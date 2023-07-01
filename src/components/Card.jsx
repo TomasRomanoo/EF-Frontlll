@@ -1,10 +1,5 @@
-// import React, { useContext } from "react";
-// import { Link } from 'react-router-dom;';
-// import { GlobalElements } from "../context/GlobalElements";
-
 import { useState } from "react";
-import { json } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 export default function Card(props) {
     const { odontologo } = props
     const [favs, setFavs] = useState(
@@ -13,6 +8,7 @@ export default function Card(props) {
         : []
     )
     const addFav = (user)=>{
+
         const newFavs = [...favs, user]
         setFavs(newFavs)
         localStorage.setItem("favUsers",JSON.stringify(newFavs))
@@ -29,6 +25,9 @@ export default function Card(props) {
                     <span className='titulo'>User:</span> {odontologo.username}
                 </p>
             <button onClick={() => addFav(odontologo)} className="favButton">Add fav</button>
+            <Link to={`/Dentis/${odontologo.id}`}>
+                <button >Profile</button>
+            </Link>
         </div>
     );
 }
