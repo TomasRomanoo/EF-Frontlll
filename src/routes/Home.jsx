@@ -10,7 +10,8 @@ const Home = () => {
         <h1>Home</h1>
 
         <div className='card-grid'>
-            <ul>{odontologos.map(odontologo =>(
+            <ul>
+                {odontologos.map(odontologo =>(
                     <Card
                     key={odontologo.id}
                     odontologo={odontologo}

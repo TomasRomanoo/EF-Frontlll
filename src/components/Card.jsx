@@ -2,11 +2,20 @@
 // import { Link } from 'react-router-dom;';
 // import { GlobalElements } from "../context/GlobalElements";
 
+import { useState } from "react";
+import { json } from "react-router-dom";
+
 export default function Card(props) {
     const { odontologo } = props
-
-    const addFav = ()=>{
-        // Aqui iria la logica para agregar la Card en el localStorage
+    const [favs, setFavs] = useState(
+        localStorage.getItem("favUsers")
+        ? JSON.parse(localStorage.getItem("favUsers"))
+        : []
+    )
+    const addFav = (user)=>{
+        const newFavs = [...favs, user]
+        setFavs(newFavs)
+        localStorage.setItem("favUsers",JSON.stringify(newFavs))
     }
 
 
@@ -19,7 +28,7 @@ export default function Card(props) {
                 <p>
                     <span className='titulo'>User:</span> {odontologo.username}
                 </p>
-            <button onClick={addFav} className="favButton">Add fav</button>
+            <button onClick={() => addFav(odontologo)} className="favButton">Add fav</button>
         </div>
     );
 }
